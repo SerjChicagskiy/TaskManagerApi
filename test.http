@@ -1,0 +1,46 @@
+
+#DELETE   https://localhost:5001/api/Task/10
+#PUT https://localhost:5001/api/Task/isdone/2
+# PUT https://localhost:5001/api/Task/setPriority/2
+# Content-Type: application/json
+
+# {
+#    "PriorityId":1
+# }
+
+
+# PUT https://localhost:5001/api/Task/setdate/2
+# Content-Type: application/json
+
+# {
+#     "DateTime":"2020-11-11"
+# }
+
+#GET  https://localhost:5001/api/Task/page/2/qt/3
+#GET  https://localhost:5001/api/Task/searchArhivebydaterange/13.12.2020/14.12.2020
+#PUT   https://localhost:5001/api/Task/toarhive/8
+
+#GET  https://localhost:5001/api/Task/searchbydaterange/21.03.2020/04.05.2020
+
+
+# POST https://localhost:5001/api/Task
+# Content-Type: application/json
+
+# {
+#     "Title": "Встреча",
+#     "Description": "Встреча с клиентом",
+#     "PriorityId": 3,
+#     "DateTime":"2020-05-05"
+# }
+
+# GET  https://localhost:5001/api/task
+# Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluIiwicm9sZSI6WyJBZG1pbiIsIlVzZXIiXSwibmJmIjoxNjA3MDA2MzE0LCJleHAiOjE2MDcwMDgxMTQsImlhdCI6MTYwNzAwNjMxNH0.jnrnRQKLrpyzD3YTOC-CahfZOe9NqkZ2jp0CG1lJR0Q
+
+POST https://localhost:5001/api/auth
+Content-Type: application/json
+
+{
+    "login":"admin",
+    "password":"admin"
+}
+

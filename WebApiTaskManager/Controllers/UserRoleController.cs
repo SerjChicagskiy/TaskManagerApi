@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using WebApiTaskManager.BLL.Comunication;
 using WebApiTaskManager.BLL.DTO;
 using WebApiTaskManager.BLL.Extension;
 using WebApiTaskManager.BLL.Sevices;
@@ -12,11 +14,18 @@ namespace WebApiTaskManager.Controllers
     public class UserRoleController: ControllerBase
     {
         private readonly UserRoleService userRoleService;
-        public UserRoleController(UserRoleService userRoleService)
+        private readonly RoleService roleService;
+        public UserRoleController(UserRoleService userRoleService,RoleService roleService)
         {
             this.userRoleService = userRoleService;
+            this.roleService=roleService;
         }
 
+        public async Task<IEnumerable<RoleDTO>> GetAll()
+        {
+            return await roleService.GetAllAsync();
+        }
+        
         [HttpPost]
         [Route("setrole")]
         public async Task<IActionResult> SetRole([FromBody]UserRoleDTO userRoleDTO)

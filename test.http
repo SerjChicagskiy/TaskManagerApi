@@ -33,14 +33,29 @@
 #     "DateTime":"2020-05-05"
 # }
 
-# GET  https://localhost:5001/api/task
-# Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluIiwicm9sZSI6WyJBZG1pbiIsIlVzZXIiXSwibmJmIjoxNjA3MDA2MzE0LCJleHAiOjE2MDcwMDgxMTQsImlhdCI6MTYwNzAwNjMxNH0.jnrnRQKLrpyzD3YTOC-CahfZOe9NqkZ2jp0CG1lJR0Q
+#GET  https://localhost:5001/api/user
+#Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluIiwicm9sZSI6WyJBZG1pbiIsIlVzZXIiXSwibmJmIjoxNjA3MzMyMDY1LCJleHAiOjE2MDczMzM4NjUsImlhdCI6MTYwNzMzMjA2NX0.z4sJPN_O1PC3U05DqdkVBZqjUlg-KwXnCJkRp6OeknI
+DELETE https://localhost:5001/api/user/12
 
-POST https://localhost:5001/api/auth
-Content-Type: application/json
+# POST https://localhost:5001/api/user
+# Content-Type: application/json
 
-{
-    "login":"admin",
-    "password":"admin"
-}
+# {
+#     "Name": "Встреча",
+#     "Lastname": "Встреча с клиентом",
+#     "Email": "sergeymrdeath@gmail.com",
+#     "birthday":"2020-05-05",
+#     "phone": "+38 093 909-37-17",
+#     "photoPath": "",
+#     "login": "serrikkssssss",
+#     "password": "serrriiff"
+# }
+
+# POST https://localhost:5001/api/auth
+# Content-Type: application/json
+
+# {
+#     "login":"admin",
+#     "password":"admin"
+# }
 

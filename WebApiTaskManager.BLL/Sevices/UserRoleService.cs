@@ -52,11 +52,11 @@ namespace WebApiTaskManager.BLL.Sevices
         {
             try
             {
-                User user = await userRepository.FindByIdAsync(userId);
+                var user = await userRepository.FindByIdAsync(userId);
                 user.UserRoles.Add(new UserRole {UserId = userId, RoleId = roleId});
                 await unitOfWork.CompleteAsync();
-                user = await userRepository.FindByIdAsync(userId);
                 var userDTO=mapper.Map<User,UserDTO>(user);
+                userDTO.Password=null;
                 return new UserResponse(userDTO);
             }
             catch (Exception ex)

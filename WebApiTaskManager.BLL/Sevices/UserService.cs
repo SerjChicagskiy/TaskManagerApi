@@ -23,11 +23,27 @@ namespace WebApiTaskManager.BLL.Sevices
             this.mapper=mapper;
         }
 
+        public async Task<UserResponse> FindByLoginAsync(string login)
+        {   
+            try 
+            {
+                var user=await userRepository.FindByLoginAsync(login);
+                var userDTO=mapper.Map<User,UserDTO>(user);
+                return new UserResponse(userDTO);
+            }
+            catch(Exception ex)
+            {
+                return new UserResponse($"Save user error: {ex.Message}");
+            }
+        }
         public async Task<UserResponse> AddAsync(UserDTO userDTO)
         {
             try 
             {
                 var user=mapper.Map<UserDTO,User>(userDTO);
+                if(await userRepository.FindByLoginAsync(user.Login)!=null){
+                    return new UserResponse($"This login is already in use. Please enter a different login.");
+                }
                 await userRepository.AddAsync(user);
                 await unitOfWork.CompleteAsync();
                 return new UserResponse(userDTO);
@@ -50,6 +66,7 @@ namespace WebApiTaskManager.BLL.Sevices
                 userRepository.Delete(existingUser);
                 await unitOfWork.CompleteAsync();
                 var existingUserDTO=mapper.Map<User,UserDTO>(existingUser);
+                existingUserDTO.Password=null;
                 return new UserResponse(existingUserDTO);
             }
             catch (Exception ex)

@@ -24,7 +24,7 @@ namespace WebApiTaskManager.Controllers
         }
 
         [HttpGet]
-        [Route("api/user")]
+        [Route("api/{controller}")]
         public async Task<IEnumerable<UserDTO>> GetAllAsync()
         {
             return await userService.GetAllAsync();            
@@ -39,11 +39,13 @@ namespace WebApiTaskManager.Controllers
             
             var result = await userService.AddAsync(userDTO);
             var roles= await roleService.GetAllAsync();
-            var userResponse = await userRoleService.SetUserRoleAsync(userDTO.Id, roles.FirstOrDefault(x=>x.Name=="User").Id);
-
-            if (!result.Success)
+            if(result.Success)
+            {
+                var user=await userService.FindByLoginAsync(result.User.Login);
+                result=await userRoleService.SetUserRoleAsync(user.User.Id, roles.FirstOrDefault(x=>x.Name=="User").Id);
+            }
+            else
                 return BadRequest(result.Message);
-            
             return Ok(result.User);
         }
 

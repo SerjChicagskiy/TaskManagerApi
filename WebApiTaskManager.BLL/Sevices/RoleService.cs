@@ -32,7 +32,7 @@ namespace WebApiTaskManager.BLL.Sevices
 
         public async Task<IEnumerable<RoleDTO>> GetAllAsync()
         {
-            var roles=await roleRepository. GetAllAsync(); 
+            var roles=await roleRepository.GetAllAsync(); 
             var rolesDTO=mapper.Map<IEnumerable<Role>,IEnumerable<RoleDTO>>(roles);
             return rolesDTO;
         }

@@ -52,7 +52,7 @@ namespace WebApiTaskManager.BLL.Sevices
         {
             try
             {
-                var user = await userRepository.FindByIdAsync(userId);
+                var user = await userRepository.GetByIdAsync(userId);
                 user.UserRoles.Add(new UserRole {UserId = userId, RoleId = roleId});
                 await unitOfWork.CompleteAsync();
                 var userDTO=mapper.Map<User,UserDTO>(user);

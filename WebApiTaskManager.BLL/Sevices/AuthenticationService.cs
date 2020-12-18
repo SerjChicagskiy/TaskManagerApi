@@ -33,7 +33,7 @@ namespace WebApiTaskManager.BLL.Sevices
                         .SingleOrDefault(usr=>usr.Login==login&&usr.Password==password);
             
             if(user==null)
-                return new UserResponse("Invalid login or password");
+                return new UserResponse("Invalid login or password!");
             try
             {
                 var tokenHandler = new JwtSecurityTokenHandler();

@@ -141,7 +141,7 @@ namespace WebApiTaskManager.Controllers
             var result = await taskService.AddAsync(taskReminderDTO);
 
             if (!result.Success)
-                return BadRequest(result.Message);
+                return BadRequest(result);
             
             return Ok(result.TaskReminderDTO);
         }
@@ -153,9 +153,9 @@ namespace WebApiTaskManager.Controllers
             var result = await taskService.DeleteAsync(id);
 
             if (!result.Success)
-                return BadRequest(result.Message);
+                return BadRequest(result);
 
-            return Ok(result);
+            return Ok(result.TaskReminderDTO);
         }
 
         

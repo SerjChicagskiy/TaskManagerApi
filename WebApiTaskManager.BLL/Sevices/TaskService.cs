@@ -7,6 +7,7 @@ using AutoMapper;
 using System;
 using WebApiTaskManager.BLL.Comunication;
 using LinqKit;
+using System.Linq;
 
 namespace WebApiTaskManager.BLL.Sevices
 {
@@ -245,6 +246,9 @@ namespace WebApiTaskManager.BLL.Sevices
             taskReminder.Title=taskReminderDTO.Title;
             taskReminder.Description=taskReminderDTO.Description;
             taskReminder.PriorityId=taskReminderDTO.PriorityId;
+            taskReminder.DateTime=taskReminderDTO.DateTime;
+            taskReminder.IsArhive=taskReminderDTO.IsArhive;
+            taskReminder.IsDone=taskReminderDTO.IsDone;
 
             try
             {

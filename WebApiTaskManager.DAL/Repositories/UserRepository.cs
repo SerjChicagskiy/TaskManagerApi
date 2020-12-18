@@ -12,12 +12,7 @@ namespace WebApiTaskManager.DAL.Repositories
         }
 
 
-        public async Task<User> FindByIdAsync(int id)
-        {
-            return await dbSet.Include(x => x.UserRoles)
-                                .ThenInclude(x => x.Role)
-                                    .FirstOrDefaultAsync(x => x.Id == id);
-        }
+      
 
         public async Task<IEnumerable<User>> GetAllAsync()
         {

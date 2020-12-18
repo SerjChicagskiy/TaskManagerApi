@@ -56,7 +56,7 @@ namespace WebApiTaskManager.BLL.Sevices
 
         public async Task<UserResponse> DeleteAsync(int id)
         {
-            var existingUser = await userRepository.FindByIdAsync(id);
+            var existingUser = await userRepository.GetByIdAsync(id);
 
             if (existingUser == null)
                 return new UserResponse("User not found");
@@ -95,25 +95,23 @@ namespace WebApiTaskManager.BLL.Sevices
          public async Task<UserResponse> UpdateAsync(int id, UserDTO userDTO)
         {
             var user= await userRepository.GetByIdAsync(id);
-
+   
             if (user == null)
                 return new UserResponse("User not found");
             
             user.Name=userDTO.Name;
             user.Lastname=userDTO.Lastname;
-            user.Login=userDTO.Login;
             user.Phone=userDTO.Phone;
             user.PhotoPath=userDTO.PhotoPath;
             user.Birthday=userDTO.Birthday;
             user.Email=userDTO.Email;
-            user.Password=userDTO.Password;
-
+            
             try
             {
                 userRepository.Update(user);
                 await unitOfWork.CompleteAsync();
-
-                return new UserResponse(userDTO);
+                var userDTOEdit=mapper.Map<User,UserDTO>(user);
+                return new UserResponse(userDTOEdit);
             }
             catch (Exception ex)
             {

@@ -9,7 +9,7 @@ using WebApiTaskManager.BLL.Sevices;
 
 namespace WebApiTaskManager.Controllers
 {
-    //[Authorize (Roles="admin")]
+    //[Authorize (Roles="Admin")]
     [ApiController]
     public class UserController: Controller
     {
@@ -45,12 +45,12 @@ namespace WebApiTaskManager.Controllers
                 result=await userRoleService.SetUserRoleAsync(user.User.Id, roles.FirstOrDefault(x=>x.Name=="User").Id);
             }
             else
-                return BadRequest(result.Message);
+                return BadRequest(result);
             return Ok(result.User);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAsync(int id, [FromBody]UserDTO userDTO)
+        [HttpPut("api/{controller}/{id}")]
+        public async Task<IActionResult> PutAsync(int id, UserDTO userDTO)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
